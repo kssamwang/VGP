@@ -60,30 +60,32 @@ public class Edge implements Comparable,Serializable{
             return false;
         }
         final Edge other = (Edge) obj;
-        if (this.u != other.u) {
-            if ((this.u == other.v)&&(this.v == other.u)){
-                return true;
-            }
-            else return false;
-        }
-        if (this.v != other.v) {
-            if ((this.u == other.v)&&(this.v == other.u)){
-                return true;
-            }
-            else return false;
-        }
-        return true;
+        // if (this.u != other.u) {
+        //     if ((this.u == other.v)&&(this.v == other.u)){
+        //         return true;
+        //     }
+        //     else return false;
+        // }
+        // if (this.v != other.v) {
+        //     if ((this.u == other.v)&&(this.v == other.u)){
+        //         return true;
+        //     }
+        //     else return false;
+        // }
+        // return true;
+        return this.u == other.u && this.v == other.v;
     }
     
     @Override
     public String toString(){
-        String s = "";
-        if (u<v){
-            s = u+","+v;
-        }
-        else{
-            s = v+","+u;
-        }
+        // String s = "";
+        // if (u<v){
+        //     s = u+","+v;
+        // }
+        // else{
+        //     s = v+","+u;
+        // }
+        String s = u+"\t"+v;
         return s;
     }
 

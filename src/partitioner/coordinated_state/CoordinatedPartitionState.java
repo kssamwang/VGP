@@ -111,7 +111,7 @@ public class CoordinatedPartitionState implements PartitionState{
             MAX_LOAD = new_value;
         }
         if (GLOBALS.OUTPUT_FILE_NAME!=null){
-            out.write(e+": "+m+"\n");
+            out.write(e+"\t"+m+"\n");
         }
     }
     

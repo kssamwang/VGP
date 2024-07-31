@@ -53,9 +53,9 @@ public class Input {
     
     private void readDatasetFromFile(){        
         long begin_time = System.currentTimeMillis();
-        TreeSet<Integer> vertices_tree= new TreeSet<Integer>();
+        //TreeSet<Integer> vertices_tree= new TreeSet<Integer>();
         TreeSet<Edge> edges_tree = new TreeSet<Edge>();
-        HashMap<Integer,Integer> degree = new HashMap<Integer,Integer>();
+        //HashMap<Integer,Integer> degree = new HashMap<Integer,Integer>();
         try {
             FileInputStream fis = new FileInputStream(new File(GLOBALS.INPUT_FILE_NAME));
             InputStreamReader isr = new InputStreamReader(fis);
@@ -71,16 +71,16 @@ public class Input {
                     if ( edges_tree.add(t) ){ edges++; }
                     //System.out.println(t);
 
-                    if( vertices_tree.add(u)){ vertices++; }
-                    if( vertices_tree.add(v) ){ vertices++; }
+                    // if( vertices_tree.add(u)){ vertices++; }
+                    // if( vertices_tree.add(v) ){ vertices++; }
                     
-                    //DEGREE STATISTICS
-                    if (!degree.containsKey(u)){ degree.put(u, 0);}
-                    if (!degree.containsKey(v)){ degree.put(v, 0);}                 
-                    int old_degree_u  = degree.get(u);
-                    int old_degree_v  = degree.get(v);
-                    degree.put(u, old_degree_u+1);
-                    degree.put(v, old_degree_v+1);
+                    // //DEGREE STATISTICS
+                    // if (!degree.containsKey(u)){ degree.put(u, 0);}
+                    // if (!degree.containsKey(v)){ degree.put(v, 0);}                 
+                    // int old_degree_u  = degree.get(u);
+                    // int old_degree_v  = degree.get(v);
+                    // degree.put(u, old_degree_u+1);
+                    // degree.put(v, old_degree_v+1);
                 }
             }         
             in.close();
@@ -91,13 +91,13 @@ public class Input {
         }          
         
         //DEBUG
-        int MIN_DEGREE = Integer.MAX_VALUE;
-        int MAX_DEGREE = Integer.MIN_VALUE;
-        for (int v : degree.keySet()){
-            int d = degree.get(v);
-            if (d>MAX_DEGREE){ MAX_DEGREE = d; }
-            if (d<MIN_DEGREE){ MIN_DEGREE = d; }
-        }
+        // int MIN_DEGREE = Integer.MAX_VALUE;
+        // int MAX_DEGREE = Integer.MIN_VALUE;
+        // for (int v : degree.keySet()){
+        //     int d = degree.get(v);
+        //     if (d>MAX_DEGREE){ MAX_DEGREE = d; }
+        //     if (d<MIN_DEGREE){ MIN_DEGREE = d; }
+        // }
         long end_time = System.currentTimeMillis();
         long time = end_time-begin_time;
         time /= 1000; //sec
@@ -105,13 +105,13 @@ public class Input {
         System.out.println("\n Info:\n");
         System.out.println("\tvertices: "+vertices);
         System.out.println("\tedges: "+edges);
-        System.out.println("\tmin-degree: "+MIN_DEGREE);
-        System.out.println("\tmax-degree: "+MAX_DEGREE);
+        // System.out.println("\tmin-degree: "+MIN_DEGREE);
+        // System.out.println("\tmax-degree: "+MAX_DEGREE);
         
         dataset = new ArrayList<Edge>(edges_tree);
-        vertices_tree.clear();
+        //vertices_tree.clear();
         edges_tree.clear();
-        degree.clear();
+        //degree.clear();
     }
     
     public List<Edge> getDataset(){

@@ -28,8 +28,31 @@ Options:
 
 For a more in-depth discussion see the manual.
 
-###Example
+## Example
 
-```
+```bash
 java -jar dist/VGP.jar example/sample_graph.txt 4 -algorithm hdrf -lambda 3 -threads 1 -output example/output  
+```
+
+## Compile
+
+```bash
+# 1. 创建manifest.txt文件
+echo "Main-Class: application.Main" > manifest.txt
+
+# 2. 清理并重新编译源代码
+rm -rf build dist/VGP.jar
+mkdir -p build
+find ./src -name *.java | xargs javac -d build
+
+# 3. 使用manifest.txt生成包含Main-Class属性的JAR包
+jar cvfm dist/VGP.jar manifest.txt -C build .
+
+# 4. 检查JAR包内容
+jar tf dist/VGP.jar
+jar xf dist/VGP.jar META-INF/MANIFEST.MF
+cat META-INF/MANIFEST.MF
+
+# 5. 运行JAR包
+java -jar dist/VGP.jar
 ```
