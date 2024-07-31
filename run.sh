@@ -31,21 +31,20 @@ monitor_memory() {
     echo "=============================================" >> $memory_usage_file
 }
 
-# DATASETS=("uk-2002" "arabic-2005" "it-2004" "webbase-2001")
+DATASETS=("uk-2002" "arabic-2005" "it-2004" "webbase-2001")
 
-DATASETS=("webbase-2001")
-
-PARTITIONS=("32")
+PARTITIONS=("16")
 
 for DATASET in "${DATASETS[@]}"; do
-    SAVENAME_BASE="/raid/wsy/tmp/dbhjava/${DATASET}/"
-    mkdir -p ${SAVENAME_BASE}
+
     FILEPATH="/raid/wsy/tc/${DATASET}.txt"
-    SAVENAME="${SAVENAME_BASE}$(basename ${FILEPATH%.*})"
     memory_usage_file="mem_dbhjava_${DATASET}.txt"
 
     for PARTITION in "${PARTITIONS[@]}"; do
-        
+        SAVENAME_BASE="/raid/wsy/tmp/dbhjava/${PARTITION}/${DATASET}/"
+        mkdir -p ${SAVENAME_BASE}
+        SAVENAME="${SAVENAME_BASE}$(basename ${FILEPATH%.*})"
+
         echo "Processing file: ${FILEPATH}"
         echo "Partition: ${PARTITION}"
         echo "Save name: ${SAVENAME}"
